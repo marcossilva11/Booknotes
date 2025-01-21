@@ -4,8 +4,78 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book Notes</title>
+    <!-- BOOTSTRAP ICONS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <!-- STYLE -->
+    <link rel="stylesheet" href="../public/css/styles.css" />
   </head>
   <body>
-    <h1>Book Notes</h1>
+    <header>
+      <div class="logo-box">
+        <h2>BOOK NOTES</h2>
+      </div>
+      <nav>
+        <ul>
+          <a href="#">
+            <li>Home</li>
+          </a>
+          <a href="#">
+            <li>My list</li>
+          </a>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <h1>Find and organize your favorite books</h1>
+      <p>
+        Welcome to your new space to discover and track the books you're
+        reading! Here, you can search for the title of the book you're starting,
+        and once you find it, you can add it to your personal list. After
+        adding, you can:
+      </p>
+      <ul>
+        <li>
+          <span><i class="bi bi-journal-text"></i></span>
+          Take notes about what you're thinking of the book.
+        </li>
+        <li>
+          <span><i class="bi bi-star"></i></span>
+          Rate the book and leave your opinion to remember what you thought.
+        </li>
+        <li>
+          <span><i class="bi bi-journal-x"></i></span>
+          Remove the book from your list once you've finished it.
+        </li>
+      </ul>
+      <form action="/" method="get">
+        <input
+          type="text"
+          name="bookName"
+          class="search-book-input"
+          id="book-name"
+          placeholder="Search the book here"
+          required
+        />
+        <button type="submit" class="search-book-btn">
+          <i class="bi bi-search"></i>
+        </button>
+      </form>
+    </main>
+    <footer>
+      <div class="left-footer">
+        <p>© 2025 - Marcos Silva</p>
+      </div>
+      <ul>
+        <a href="https://github.com/marcossilva11" target="_blank">
+          <li><i class="bi bi-github"></i></li>
+        </a>
+        <a href="#" target="_blank">
+          <li><i class="bi bi-linkedin"></i></li>
+        </a>
+      </ul>
+    </footer>
   </body>
 </html>
