@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Notes</title>
+    <!-- BOOTSTRAP ICONS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <!-- STYLE -->
+    <link rel="stylesheet" href="../public/css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo-box">
+        <h2>BOOK NOTES</h2>
+      </div>
+      <nav>
+        <ul>
+          <a href="./index.html">
+            <li>Home</li>
+          </a>
+          <a href="./myList.html">
+            <li>My list</li>
+          </a>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <h1>Make your notes</h1>
+      <div class="book-box-details">
+        <div class="about-book">
+          <div class="book-cover">
+            <img
+              src="https://covers.openlibrary.org/b/id/240727-L.jpg"
+              alt="Book cover"
+            />
+          </div>
+          <div class="book-infos">
+            <h2>You Can Negotiate Anything - by Herb Cohen</h2>
+            <p>Data read: 22/01/2025</p>
+            <ul class="rating-list">
+              <li>Rating:</li>
+              <li class="rating"><i class="bi bi-star-fill"></i></li>
+              <li class="rating"><i class="bi bi-star-fill"></i></li>
+              <li class="rating"><i class="bi bi-star-fill"></i></li>
+              <li class="rating"><i class="bi bi-star"></i></li>
+              <li class="rating"><i class="bi bi-star"></i></li>
+            </ul>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              Accusantium debitis repellendus, praesentium corporis dolores,
+              ullam et quas maiores velit harum consequuntur! Iusto quo
+              recusandae placeat quae quibusdam nesciunt labore quos?
+            </p>
+          </div>
+        </div>
+        <div class="book-notes">
+          <div class="book-user-resume">
+            <h2>Your resume</h2>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos
+              culpa officiis rem incidunt exercitationem, qui labore inventore
+              deserunt sapiente, consequatur soluta? Porro voluptate temporibus
+              obcaecati, recusandae ex repellat optio. Iure?
+            </p>
+          </div>
+          <div class="book-user-notes">
+            <h2>Your notes</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora,
+              voluptatem. Aut, quidem tempore consectetur tempora dolores
+              repellendus maiores vel nemo cupiditate quia quaerat numquam
+              ratione cumque porro laboriosam quasi enim. Lorem ipsum dolor sit
+              amet consectetur adipisicing elit. Error, totam perferendis neque
+              aperiam sit accusantium possimus, minus deserunt accusamus ratione
+              inventore sequi animi similique dicta! Laudantium, consequatur
+              nostrum? Corrupti, ea!
+            </p>
+          </div>
+          <div class="edit-delete-section">
+            <button onclick="openModal('edit')">Edit</button>
+            <button onclick="openModal('delete')">Delete</button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="left-footer">
+        <p>© 2025 - Marcos Silva</p>
+      </div>
+      <ul>
+        <a href="https://github.com/marcossilva11" target="_blank">
+          <li><i class="bi bi-github"></i></li>
+        </a>
+        <a href="#" target="_blank">
+          <li><i class="bi bi-linkedin"></i></li>
+        </a>
+      </ul>
+    </footer>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal">
+        <div class="modal-header">
+          <h2>ADD NOTES/REMOVE BOOK</h2>
+        </div>
+        <div class="modal-main">
+          <div class="modal-content">
+            <p class="modal-message">Do you have right?</p>
+            <form action="#" class="modal-form" method="post">
+              <div class="input-box">
+                <label for="userResume">Your resume</label>
+                <textarea
+                  name="user-resume"
+                  id="userResume"
+                  rows="5"
+                ></textarea>
+              </div>
+              <div class="input-box">
+                <label for="userNotes">Your notes</label>
+                <textarea name="user-notes" id="userNotes" rows="5"></textarea>
+              </div>
+              <div class="input-box">
+                <p>Your rating</p>
+                <div class="user-rating">
+                  <label>
+                    <input type="radio" name="rating" value="1" /><i
+                      class="bi bi-star"
+                    ></i>
+                  </label>
+                  <label>
+                    <input type="radio" name="rating" value="2" /><i
+                      class="bi bi-star"
+                    ></i>
+                  </label>
+                  <label>
+                    <input type="radio" name="rating" value="3" /><i
+                      class="bi bi-star"
+                    ></i>
+                  </label>
+                  <label>
+                    <input type="radio" name="rating" value="4" /><i
+                      class="bi bi-star"
+                    ></i>
+                  </label>
+                  <label>
+                    <input type="radio" name="rating" value="5" /><i
+                      class="bi bi-star"
+                    ></i>
+                  </label>
+                </div>
+              </div>
+              <button id="confirm" type="submit">Confirm</button>
+            </form>
+          </div>
+          <div class="modal-action">
+            <button id="cancel">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../public/js/script.js"></script>
+  </body>
+</html>
