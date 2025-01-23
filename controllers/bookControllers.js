@@ -66,6 +66,17 @@ const renderHomePage = async (req, res) => {
   }
 };
 
+const renderMyList = async (req, res) => {
+  const books = await Book.selectBooks();
+  res.render("myList", { books });
+};
+
+const renderBookDetails = async (req, res) => {
+  const { bookId } = req.params;
+  const book = await Book.findById(bookId);
+  res.render("details.ejs", { book });
+};
+
 const addBookToList = async (req, res) => {
   const { bookKey, searchQuery } = req.body;
 
@@ -123,4 +134,24 @@ const addBookToList = async (req, res) => {
   }
 };
 
-export default { renderHomePage, addBookToList };
+const editBook = async (req, res) => {
+  const { bookId, userResume, userNotes, rating } = req.body;
+
+  const bookEdited = {
+    rating: rating,
+    opinionResume: userResume,
+    notes: userNotes,
+    bookId,
+  };
+
+  await Book.updateBook(bookEdited);
+  res.redirect(`/bookDetails/${bookId}`);
+};
+
+export default {
+  renderHomePage,
+  addBookToList,
+  renderMyList,
+  renderBookDetails,
+  editBook,
+};

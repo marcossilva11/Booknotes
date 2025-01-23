@@ -1,33 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Book Notes</title>
-    <!-- BOOTSTRAP ICONS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    />
-    <!-- STYLE -->
-    <link rel="stylesheet" href="/css/styles.css" />
-  </head>
-  <body>
-    <header>
-      <div class="logo-box">
-        <h2>BOOK NOTES</h2>
-      </div>
-      <nav>
-        <ul>
-          <a href="/">
-            <li>Home</li>
-          </a>
-          <a href="./myList.html">
-            <li>My list</li>
-          </a>
-        </ul>
-      </nav>
-    </header>
+<%- include('partials/header.ejs') %>
     <main>
       <form action="/" method="get" autocomplete="off">
         <input
@@ -93,18 +64,6 @@
       </ul>
       <% } %>
     </main>
-    <footer>
-      <div class="left-footer">
-        <p>© 2025 - Marcos Silva</p>
-      </div>
-      <ul>
-        <a href="https://github.com/marcossilva11" target="_blank">
-          <li><i class="bi bi-github"></i></li>
-        </a>
-        <a href="#" target="_blank">
-          <li><i class="bi bi-linkedin"></i></li>
-        </a>
-      </ul>
-    </footer>
+    <%- include('partials/footer.ejs') %>
   </body>
 </html>

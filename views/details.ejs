@@ -1,0 +1,121 @@
+<%- include('partials/header.ejs') %>
+    <main>
+      <h1>Make your notes</h1>
+      <div class="book-box-details">
+        <div class="about-book">
+          <div class="book-cover">
+            <img
+              src="<%= book.cover_url %>"
+              alt="Book cover"
+            />
+          </div>
+          <div class="book-infos">
+            <h2><%= book.title %> - by <%= book.title %></h2>
+            <% 
+                const date = new Date(book.date_added)
+                const formattedDate = date.toLocaleDateString('en-US');
+            %>
+            <p>Date added: <%= formattedDate %></p>
+              <ul class="rating-list">
+                <li>Rating:</li>
+                <% 
+                  const rating = book.rating || 0;
+                %>
+                <li class="rating"><i class="bi <%= rating >= 1 ? 'bi-star-fill' : 'bi-star' %>"></i></li>
+                <li class="rating"><i class="bi <%= rating >= 2 ? 'bi-star-fill' : 'bi-star' %>"></i></li>
+                <li class="rating"><i class="bi <%= rating >= 3 ? 'bi-star-fill' : 'bi-star' %>"></i></li>
+                <li class="rating"><i class="bi <%= rating >= 4 ? 'bi-star-fill' : 'bi-star' %>"></i></li>
+                <li class="rating"><i class="bi <%= rating >= 5 ? 'bi-star-fill' : 'bi-star' %>"></i></li>
+              </ul>
+            <p>
+              <%= book.description %>
+            </p>
+          </div>
+        </div>
+        <div class="book-notes">
+          <div class="book-user-resume">
+            <h2>Your resume</h2>
+            <p>
+              <%= book.opinion_resume || 'No resume available yet.' %>
+            </p>
+          </div>
+          <div class="book-user-notes">
+            <h2>Your notes</h2>
+            <p>
+              <%= book.notes || "No notes available yet." %>
+            </p>
+          </div>
+          <div class="edit-delete-section">
+            <button onclick="openModal('edit')">Make notes and more</button>
+            <button onclick="openModal('delete')">Remove this book from your list</button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <%- include('partials/footer.ejs') %>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal">
+        <div class="modal-main">
+          <div class="modal-content">
+            <h2 class="modal-message"></h2>
+            <form action="/editBook" class="modal-form" method="post">
+              <input type="hidden" name="bookId" value="<%= book.id %>">
+              <div class="input-box">
+                <label for="userResume">Your resume</label>
+                <textarea
+                  name="userResume"
+                  id="userResume"
+                  rows="5"
+                ><%= book.opinion_resume %></textarea>
+              </div>
+              <div class="input-box">
+                <label for="userNotes">Your notes</label>
+                <textarea name="userNotes" id="userNotes" rows="5"><%= book.notes %></textarea>
+              </div>
+              <div class="input-box">
+                <p>Your rating</p>
+
+                <% const userRating = book.rating || 3; %>
+
+                <div class="user-rating">
+                  <label>
+                    <input type="radio" name="rating" value="1" <%= userRating === 1 ? 'checked' : '' %> /><i
+                      class="bi bi-star"
+                    ></i>
+                  </label>
+                  <label>
+                    <input type="radio" name="rating" value="2" <%= userRating === 2 ? 'checked' : '' %> /><i
+                      class="bi bi-star"
+                    ></i>
+                  </label>
+                  <label>
+                    <input type="radio" name="rating" value="3" <%= userRating === 3 ? 'checked' : '' %> /><i
+                      class="bi bi-star"
+                    ></i>
+                  </label>
+                  <label>
+                    <input type="radio" name="rating" value="4" <%= userRating === 4 ? 'checked' : '' %> /><i
+                      class="bi bi-star"
+                    ></i>
+                  </label>
+                  <label>
+                    <input type="radio" name="rating" value="5" <%= userRating === 5 ? 'checked' : '' %> /><i
+                      class="bi bi-star"
+                    ></i>
+                  </label>
+                </div>
+              </div>
+              <button id="confirm" type="submit">Confirm</button>
+            </form>
+          </div>
+          <div class="modal-action">
+            <button id="cancel">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/js/script.js"></script>
+  </body>
+</html>

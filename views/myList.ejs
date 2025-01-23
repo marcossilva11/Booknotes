@@ -1,0 +1,44 @@
+<%- include('partials/header.ejs') %>
+    <main>
+      <h1>Your list</h1>
+       <% if (books) { %>
+        <% books.forEach(book => { %>
+          <div class="book-box">
+            <div class="book-cover">
+              <img
+                src="<%= book.cover_url %>"
+                alt="Book cover"
+              />
+            </div>
+            <div class="book-infos">
+              <h2><%= book.title %> - <%= book.author %></h2>
+              <% 
+                const date = new Date(book.date_added)
+                const formattedDate = date.toLocaleDateString('en-US');
+              %>
+              <p>Date added: <%= formattedDate %></p>
+              <% if(book.rating) { %>
+                <ul class="rating-list">
+                  <li>Rating:</li>
+                  <% 
+                    const rating = book.rating || 0;
+                  %>
+                  <li class="rating"><i class="bi <%= rating >= 1 ? 'bi-star-fill' : 'bi-star' %>"></i></li>
+                  <li class="rating"><i class="bi <%= rating >= 2 ? 'bi-star-fill' : 'bi-star' %>"></i></li>
+                  <li class="rating"><i class="bi <%= rating >= 3 ? 'bi-star-fill' : 'bi-star' %>"></i></li>
+                  <li class="rating"><i class="bi <%= rating >= 4 ? 'bi-star-fill' : 'bi-star' %>"></i></li>
+                  <li class="rating"><i class="bi <%= rating >= 5 ? 'bi-star-fill' : 'bi-star' %>"></i></li>
+                </ul>
+              <% } %>
+              <p>
+                <%= book.description %>
+              </p>
+              <a href="/bookDetails/<%= book.id %>" class="book-link">See more</a>
+            </div>
+          </div>
+        <% }); %>
+       <% } %>
+    </main>
+    <%- include('partials/footer.ejs') %>
+  </body>
+</html>
