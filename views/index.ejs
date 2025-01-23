@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/css/styles.css" />
   </head>
   <body>
-    <header>  
+    <header>
       <div class="logo-box">
         <h2>BOOK NOTES</h2>
       </div>
@@ -43,28 +43,34 @@
         </button>
       </form>
       <h1>Find and organize your favorite books</h1>
-      <% if (books) { %> 
-        <% books.forEach(book => { %>
-          <div class="book-box">
-            <div class="book-cover">
-              <img
-                src="<%= book.cover %>"
-                alt="Book cover"
-              />
-            </div>
-            <div class="book-infos">
-              <h2><%= book.title %> - by <%= book.author %></h2>
-              <p>Publish year: <%= book.year %></p>
-              <p>
-                <%= book.description %>
-              </p>
-              <form action="#" method="post" class="add-book-to-list">
-                <button type="submit">Add to my list</button>
-              </form>
-            </div>
-          </div>
-        <% }); %>
-      <% } else { %>
+      <% if (books) { %> <% books.forEach(book => { %>
+      <div class="book-box">
+        <div class="book-cover">
+          <img src="<%= book.cover %>" alt="Book cover" />
+        </div>
+        <div class="book-infos">
+          <h2><%= book.title %> - by <%= book.author %></h2>
+          <p>Publish year: <%= book.year %></p>
+          <p><%= book.description %></p>
+          <form action="/addBookToList" method="post" class="add-book-to-list">
+            <input type="hidden" name="bookKey" value="<%= book.key %>" />
+            <input
+              type="hidden"
+              name="searchQuery"
+              value="<%= book.searchQuery %>"
+            />
+
+            <% if (book.alreadyAdded) { %>
+            <button type="submit" disabled>
+              This book is already in your list.
+            </button>
+            <% } else { %>
+            <button type="submit">Add to my list</button>
+            <% } %>
+          </form>
+        </div>
+      </div>
+      <% }); %> <% } else { %>
       <p>
         Welcome to your new space to discover and track the books you're
         reading! Here, you can search for the title of the book you're starting,
