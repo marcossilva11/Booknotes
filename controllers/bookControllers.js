@@ -67,8 +67,35 @@ const renderHomePage = async (req, res) => {
 };
 
 const renderMyList = async (req, res) => {
-  const books = await Book.selectBooks();
-  res.render("myList", { books });
+  const order = req.query.order || "titulo_asc";
+
+  let orderByClause;
+
+  switch (order) {
+    case "title_asc":
+      orderByClause = "ORDER BY title ASC";
+      break;
+    case "title_desc":
+      orderByClause = "ORDER BY title DESC";
+      break;
+    case "date_desc":
+      orderByClause = "ORDER BY date_added DESC";
+      break;
+    case "date_asc":
+      orderByClause = "ORDER BY date_added ASC";
+      break;
+    case "rating_desc":
+      orderByClause = "ORDER BY rating DESC";
+      break;
+    case "rating_asc":
+      orderByClause = "ORDER BY rating ASC";
+      break;
+    default:
+      orderByClause = "ORDER BY title ASC";
+  }
+
+  const books = await Book.selectBooks(orderByClause);
+  res.render("myList", { books, selectedOrder: order });
 };
 
 const renderBookDetails = async (req, res) => {
@@ -148,10 +175,17 @@ const editBook = async (req, res) => {
   res.redirect(`/bookDetails/${bookId}`);
 };
 
+const removeBook = async (req, res) => {
+  const { bookId } = req.body;
+  await Book.removeBook(bookId);
+  res.redirect("/myList");
+};
+
 export default {
   renderHomePage,
   addBookToList,
   renderMyList,
   renderBookDetails,
   editBook,
+  removeBook,
 };

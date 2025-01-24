@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     updateStars(2);
   }
-})
+});
 
 ratingInputs.forEach((input, index) => {
   input.addEventListener("change", () => {
@@ -42,13 +42,16 @@ function openModal(action) {
   modalOverlay.style.display = "flex";
 
   if (action === "edit") {
-    modalMessage.textContent = "Edit your notes or make new notes:";
     modalForm.style.display = "block";
+    modalForm.action = "/editBook";
+    modalMessage.textContent = "Edit your notes or make new notes:";
 
     inputBoxes.forEach((inputBox) => {
       inputBox.style.display = "flex";
     });
   } else if (action === "delete") {
+    modalForm.action = "/removeBook";
+
     modalMessage.textContent = "Are you sure you want to delete this book?";
     modalForm.style.display = "block";
 

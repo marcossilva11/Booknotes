@@ -195,6 +195,75 @@ main {
 }
 
 /* MAIN SHOW BOOKS HOME*/
+main > .top-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  gap: 8px;
+  padding-top: 8px;
+  width: 85%;
+}
+
+main > .top-main > .order-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  & > label {
+    font-size: .8rem;
+  }
+  & > select {
+    width: 100%;
+    appearance: none;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.418);
+    color: #939393;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 300;
+    outline: none;
+    padding: 6px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="%23939393" d="M7 10l5 5 5-5H7z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    transition: background-color 0.3s ease-in-out;
+    & > option {
+      background-color: var(--section-bg);
+      font-size: 0.9rem;
+    }
+    & > option:hover {
+      background-color: gray;
+    }
+  }
+  & > select:hover {
+    border: none;
+    background-color: var(--section-bg);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  main > .top-main {
+    flex-direction: row;
+    width: 75%;
+    & > h2 {
+      width: 40%;
+    }
+  }
+  
+  main > .top-main > .order-form {
+    flex-direction: row;
+    flex-grow: 1;
+    & > select {
+      width: 60%;
+    }
+  }
+}
+
 main > .book-box {
   background-color: var(--section-bg);
   border-radius: 15px;
@@ -483,7 +552,6 @@ main > .book-box-details {
 }
 
 .modal {
-  display: none;
   border-radius: 15px;
   background-color: var(--header-bg);
   display: flex;
@@ -502,7 +570,8 @@ main > .book-box-details {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px; & > .modal-content {
+    gap: 15px;
+    & > .modal-content {
       width: 100%;
       display: flex;
       flex-direction: column;

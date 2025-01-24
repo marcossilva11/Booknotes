@@ -20,8 +20,8 @@ const Book = {
     );
     return result.rows[0];
   },
-  async selectBooks() {
-    const result = await pool.query("SELECT * FROM books");
+  async selectBooks(orderByClause) {
+    const result = await pool.query(`SELECT * FROM books ${orderByClause}`);
     return result.rows;
   },
   async updateBook({ rating, opinionResume, notes, bookId }) {
@@ -29,6 +29,12 @@ const Book = {
       "UPDATE books SET rating = $1, opinion_resume = $2, notes = $3 WHERE id = $4",
       [rating, opinionResume, notes, bookId]
     );
+    return result.rows[0];
+  },
+  async removeBook(bookId) {
+    const result = await pool.query("DELETE FROM books WHERE id = $1", [
+      bookId,
+    ]);
     return result.rows[0];
   },
 };

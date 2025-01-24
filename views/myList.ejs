@@ -1,7 +1,20 @@
 <%- include('partials/header.ejs') %>
     <main>
-      <h1>Your list</h1>
-       <% if (books) { %>
+      <div class="top-main">
+        <h2>Your list</h2>
+        <form action="/orderBooks" method="get" id="orderForm" class="order-form">
+          <label for="orderBy">Order by:</label>
+          <select name="order" id="orderBy" class="order-by">
+            <option value="title_asc" <%= selectedOrder === 'title_asc' ? 'selected' : '' %>>Title (A-Z)</option>
+            <option value="title_desc" <%= selectedOrder === 'title_desc' ? 'selected' : '' %>>Title (Z-A)</option>
+            <option value="date_desc" <%= selectedOrder === 'date_desc' ? 'selected' : '' %>>Date added (Recent)</option>
+            <option value="date_asc" <%= selectedOrder === 'date_asc' ? 'selected' : '' %>>Date added (Older)</option>
+            <option value="rating_desc" <%= selectedOrder === 'rating_desc' ? 'selected' : '' %>>Rating (Highest first)</option>
+            <option value="rating_asc" <%= selectedOrder === 'rating_asc' ? 'selected' : '' %>>Rating (Smaller first)</option>
+          </select>
+        </form>
+      </div>
+       <% if (books && books.length > 0) { %>
         <% books.forEach(book => { %>
           <div class="book-box">
             <div class="book-cover">
@@ -37,8 +50,20 @@
             </div>
           </div>
         <% }); %>
+       <% } else { %>
+        <p style="padding-top: 21px;">No books in your list yet. Add your first book now!</p>
        <% } %>
     </main>
     <%- include('partials/footer.ejs') %>
+    <script>
+      // ORDER BY
+      document.getElementById("orderBy").addEventListener("change", function () {
+        document.getElementById("orderForm").submit();
+      });
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const selectedOrder = urlParams.get("order") || "title_asc";
+      document.getElementById("orderBy").value = selectedOrder;
+    </script>
   </body>
 </html>
